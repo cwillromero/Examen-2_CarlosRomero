@@ -38,10 +38,15 @@ public class Sonda extends Naves {
     public void setPesoNaveSonda(double PesoNaveSonda) {
         this.PesoNaveSonda = PesoNaveSonda;
     }
-
+    
+    
     @Override
     public int[] CalcularTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Planetas p=super.getPlanetaDestino();
+        int ida=((int)p.getDistanciaATierra())/super.getVelocidad();
+        int regreso=(int)9.8*ida;
+        int[] ar={ida,regreso};
+        return ar;
     }
 
 }

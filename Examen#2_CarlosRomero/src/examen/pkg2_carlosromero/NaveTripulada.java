@@ -42,7 +42,15 @@ public class NaveTripulada extends Naves {
 
     @Override
     public int[] CalcularTiempo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Planetas p=super.getPlanetaDestino();
+        int peso=0;
+        for (int i = 0; i < atronautas.size(); i++) {
+            peso+=atronautas.get(i).getPeso();
+        }
+        int ida=((int)p.getDistanciaATierra())/(((peso*peso)*super.getVelocidad())/100);
+        int regreso=((int)p.getDistanciaATierra())/(((peso)*super.getVelocidad())/100);;
+        int[] ar={ida,regreso};
+        return ar;
     }
 
 }

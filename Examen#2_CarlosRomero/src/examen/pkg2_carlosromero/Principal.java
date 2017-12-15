@@ -25,6 +25,15 @@ public class Principal extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.black);
         this.setLocationRelativeTo(null);
         this.pack();
+        tfMaterialNave.setVisible(false);
+            spPesoNave.setVisible(false);
+            jLabel17.setVisible(false);
+            jLabel16.setVisible(false);
+            tfLugarDespeje1.setVisible(false);
+            cbbAstronautas.setVisible(false);
+            AgregarA.setVisible(false);
+            jLabel19.setVisible(false);
+            jLabel18.setVisible(false);
     }
 
     /**
@@ -714,6 +723,9 @@ public class Principal extends javax.swing.JFrame {
            double PesoNaveSonda=Double.parseDouble(spPesoNave.getValue().toString());
            Sonda sonda=new Sonda(Material, PesoNaveSonda, NumeroDeSerie, PlanetaDestino, Velocidad);
            naves.add(sonda);
+           DefaultComboBoxModel p=(DefaultComboBoxModel) cbbExpedicionNave.getModel();
+           p.addElement(sonda);
+           cbbExpedicionNave.setModel(p);
        }else{
            String NumeroDeSerie=tfNumeroDeSerie.getText(); 
            nt.setNumeroDeSerie(NumeroDeSerie);
@@ -724,7 +736,11 @@ public class Principal extends javax.swing.JFrame {
            String LugarDespeja=tfLugarDespeje1.getText();
            nt.setLugarDespeja(LugarDespeja);
            naves.add(nt);
+           DefaultComboBoxModel p=(DefaultComboBoxModel) cbbExpedicionNave.getModel();
+           p.addElement(nt);
+           cbbExpedicionNave.setModel(p);
        }
+       JOptionPane.showMessageDialog(this, "Nave Creada");
     }//GEN-LAST:event_jbPlaneta1MouseClicked
 
     private void AgregarAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarAMouseClicked
