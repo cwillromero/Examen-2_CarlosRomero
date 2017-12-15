@@ -499,18 +499,12 @@ public class Principal extends javax.swing.JFrame {
             Planetas.set(x, planetaseleccion);
             System.out.println(Planetas);
             DefaultComboBoxModel model = new DefaultComboBoxModel();
-            DefaultTableModel modelt = (DefaultTableModel) tablePlanetas.getModel();
-            
-            
-            
-            
-            
-            //dfghj
             for (Planetas t : Planetas) {
                 model.addElement(t);
             }
-            tablePlanetas.setModel(modelt);
-            cbbAstronautas.setModel(model);
+            Actualizar();
+            cbbPlanetaDestino.setModel(model);
+            cbbExpedicionPlanetaDestino1.setModel(model);
             tfNombrePlaneta.setText("");
             spTemp.setValue(0);
             cbbAnillos.setSelectedIndex(0);
@@ -678,7 +672,12 @@ public class Principal extends javax.swing.JFrame {
         astroseleccion.setSueldo(Sueldo);
         Astronautas.set(x, astroseleccion);
         System.out.println(Astronautas);
-        
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (Astronautas t : Astronautas) {
+            model.addElement(t);
+        }
+        Actualizar();
+        cbbAstronautas.setModel(model);
         JOptionPane.showMessageDialog(this, "Modificado", "Modificado", 1);
         tfNacionalidad.setText("");
         tfNacionalidad.setText("");
@@ -686,7 +685,6 @@ public class Principal extends javax.swing.JFrame {
         tfExperiencia.setText("");
         cbbSexo.setSelectedIndex(0);
         spPeso.setValue(0);
-        ff
     }//GEN-LAST:event_jbModificarAstroMouseClicked
 
     /**
@@ -734,16 +732,30 @@ public class Principal extends javax.swing.JFrame {
         ) {
         });
                DefaultTableModel Modelo = (DefaultTableModel) tableAstronautas.getModel();         
-       DefaultComboBoxModel modeloastros= new DefaultComboBoxModel(); 
-        DefaultComboBoxModel modeloplane = new DefaultComboBoxModel();
 
         for (Astronautas Astro :  Astronautas) {
             Object[] newrow = {Astro.getNombreAstronuta(), Astro.getNacinalidad(),Astro.getSueldo(), Astro.getExperiecia(), Astro.getSexo(),Astro.getPeso()
             };
-            modeloplane.addElement(Astro);
             Modelo.addRow(newrow);
         }
         tableAstronautas.setModel(Modelo);
+        
+        
+        
+        tablePlanetas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Nombre", "Temperatura", "Anillos", "Tipo de Superficie","Distancia a Tierra"
+            }
+        ) {
+        });
+        DefaultTableModel Modelo1 = (DefaultTableModel) tablePlanetas.getModel();
+        for (Planetas t : Planetas) {
+            Object [] newrow={t.getNombrePlaneta(),t.getTemperaturaMedia(),t.getAnillos(),t.getTipoDeSuperficie(),t.getDistanciaATierra()};
+            Modelo1.addRow(newrow);
+        }
+        tablePlanetas.setModel(Modelo1);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -828,4 +840,5 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Astronautas> Astronautas = new ArrayList();
     Planetas planetaseleccion;
     Astronautas astroseleccion;
+    ArrayList<Naves> naves=new ArrayList();
 }
