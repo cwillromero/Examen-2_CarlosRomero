@@ -49,4 +49,10 @@ public abstract class Naves {
     }
 
     public abstract int[] CalcularTiempo();
+
+    @Override
+    public String toString() {
+        return NumeroDeSerie;
+    }
+
 }

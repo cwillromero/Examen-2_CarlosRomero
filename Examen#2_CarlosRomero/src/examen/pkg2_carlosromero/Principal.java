@@ -110,14 +110,10 @@ public class Principal extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         cbbExpedicionNave = new javax.swing.JComboBox<>();
         cbbExpedicionPlanetaDestino1 = new javax.swing.JComboBox<>();
         jbPlaneta2 = new javax.swing.JButton();
-        jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        spRegreso = new javax.swing.JSpinner();
-        spIda1 = new javax.swing.JSpinner();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -411,27 +407,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel25.setText("Nave:");
         jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 110, 20));
 
-        jLabel26.setText("Timepo Ida:");
-        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 110, 20));
-
         jPanel4.add(cbbExpedicionNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 180, -1));
 
         jPanel4.add(cbbExpedicionPlanetaDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 180, -1));
 
         jbPlaneta2.setText("Crear Expedicion");
+        jbPlaneta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbPlaneta2MouseClicked(evt);
+            }
+        });
         jPanel4.add(jbPlaneta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 180, -1));
-
-        jLabel29.setText("Timepo Regreso:");
-        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 110, 20));
 
         jLabel30.setText("Planeta de Destino:");
         jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 110, 20));
-
-        spRegreso.setModel(new javax.swing.SpinnerNumberModel());
-        jPanel4.add(spRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 180, -1));
-
-        spIda1.setModel(new javax.swing.SpinnerNumberModel());
-        jPanel4.add(spIda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 180, -1));
 
         jTabbedPane1.addTab(" Crear Expedicion", jPanel4);
 
@@ -748,6 +737,12 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Agregado");
     }//GEN-LAST:event_AgregarAMouseClicked
 
+    private void jbPlaneta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPlaneta2MouseClicked
+        Naves nv=naves.get(cbbExpedicionNave.getSelectedIndex());
+        System.out.println(nv);
+        Planetas pl=Planetas.get(cbbExpedicionPlanetaDestino1.getSelectedIndex());
+    }//GEN-LAST:event_jbPlaneta2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -843,10 +838,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -879,10 +872,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu ppMenuAstro;
     private javax.swing.JPopupMenu ppMenuPlanet;
     private javax.swing.JSpinner spDistancia;
-    private javax.swing.JSpinner spIda1;
     private javax.swing.JSpinner spPeso;
     private javax.swing.JSpinner spPesoNave;
-    private javax.swing.JSpinner spRegreso;
     private javax.swing.JSpinner spSueldo;
     private javax.swing.JSpinner spTemp;
     private javax.swing.JSpinner spVelocidadNave;
