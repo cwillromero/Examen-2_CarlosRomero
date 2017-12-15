@@ -203,6 +203,11 @@ public class Principal extends javax.swing.JFrame {
         jdAstronautas.getContentPane().add(jbModificarAstro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
         jmiModificar.setText("Modificar Astronauta");
+        jmiModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiModificarActionPerformed(evt);
+            }
+        });
         ppMenuAstro.add(jmiModificar);
 
         jmiEliminar.setText("Eliminar Astronauta");
@@ -214,6 +219,11 @@ public class Principal extends javax.swing.JFrame {
         ppMenuAstro.add(jmiEliminar);
 
         jmiModificar1.setText("Modificar Planeta");
+        jmiModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiModificar1ActionPerformed(evt);
+            }
+        });
         ppMenuPlanet.add(jmiModificar1);
 
         jmiEliminar1.setText("Eliminar Planeta");
@@ -451,10 +461,37 @@ public class Principal extends javax.swing.JFrame {
         cbbPlanetaDestino.setModel(model);
         cbbExpedicionPlanetaDestino1.setModel(model);
         JOptionPane.showMessageDialog(this, "Planeta Guardado", "Planeta Guardado", 1);
+        tfNombrePlaneta.setText("");
+        spTemp.setValue(0);
+        cbbAnillos.setSelectedIndex(0);
+        tfTipoSuperficie.setText("");
+        spDistancia.setValue(0);
     }//GEN-LAST:event_jbGuardarPlanetaMouseClicked
 
     private void jbModificarPlanetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificarPlanetaMouseClicked
-        // TODO add your handling code here:
+        String NombrePlaneta = tfNombrePlaneta.getText();
+        int TemperaturaMedia = Integer.parseInt(spTemp.getValue().toString());
+        String Anillos = cbbAnillos.getSelectedItem().toString();
+        String TipoDeSuperficie = tfTipoSuperficie.getText();
+        double DistanciaATierra = Double.parseDouble(spDistancia.getValue().toString());
+        int x=Planetas.indexOf(planetaseleccion);
+        System.out.println(x);
+        planetaseleccion.setNombrePlaneta(NombrePlaneta);
+        planetaseleccion.setAnillos(Anillos);
+        planetaseleccion.setDistanciaATierra(DistanciaATierra);
+        planetaseleccion.setTemperaturaMedia(TemperaturaMedia);
+        planetaseleccion.setTipoDeSuperficie(TipoDeSuperficie);
+        Planetas.set(x, planetaseleccion);
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        DefaultTableModel modelt = new DefaultTableModel();
+        for (Planetas t : Planetas) {
+            model.addElement(t);
+            Object[] newRow = {t.getNombrePlaneta(), t.getTemperaturaMedia(), t.getAnillos(), t.getTipoDeSuperficie(), t.getDistanciaATierra()};
+            modelt.addRow(newRow);
+        }
+        cbbAstronautas.setModel(model);
+        tablePlanetas.setModel(modelt);
+        JOptionPane.showMessageDialog(this, "Modificado", "Modificado", 1);
     }//GEN-LAST:event_jbModificarPlanetaMouseClicked
 
     private void jbGuardarAstroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarAstroMouseClicked
@@ -495,12 +532,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEliminarActionPerformed
         try {
-            int selecion=tableAstronautas.getSelectedRow();
+            int selecion = tableAstronautas.getSelectedRow();
             System.out.println(selecion);
             DefaultTableModel modelo = (DefaultTableModel) tableAstronautas.getModel();
             modelo.removeRow(selecion);
             tableAstronautas.setModel(modelo);
             this.repaint();
+            Astronautas.remove(selecion);
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Object t : Astronautas) {
+                model.addElement(t);
+            }
+            cbbAstronautas.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No Hay Astronauta Seleccionado!", "Error", 0);
         }
@@ -508,16 +551,72 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEliminar1ActionPerformed
         try {
-            int selecion=tablePlanetas.getSelectedRow();
+            int selecion = tablePlanetas.getSelectedRow();
             System.out.println(selecion);
             DefaultTableModel modelo = (DefaultTableModel) tablePlanetas.getModel();
             modelo.removeRow(selecion);
             tablePlanetas.setModel(modelo);
             this.repaint();
+            Planetas.remove(selecion);
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Object t : Planetas) {
+                model.addElement(t);
+            }
+            cbbPlanetaDestino.setModel(model);
+            cbbExpedicionPlanetaDestino1.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No Hay Planeta Seleccionado!", "Error", 0);
         }
     }//GEN-LAST:event_jmiEliminar1ActionPerformed
+
+    private void jmiModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiModificarActionPerformed
+        try {
+            int selecion = tableAstronautas.getSelectedRow();
+            astroseleccion = Astronautas.get(selecion);
+            jbGuardarAstro.setVisible(false);
+            jbModificarAstro.setVisible(true);
+            jdAstronautas.setModal(true);
+            jdAstronautas.pack();
+            jdAstronautas.setLocationRelativeTo(this);
+            jdAstronautas.setVisible(true);
+//            tfNacionalidad.setText(astroseleccion.getNacinalidad());
+//            tfNombreAstro.setText(astroseleccion.getNombreAstronuta());
+//            spSueldo.setValue(astroseleccion.getSueldo());
+//            tfExperiencia.setText(astroseleccion.getExperiecia());
+//            if (astroseleccion.getSexo().equals("Maculino")) {
+//                cbbSexo.setSelectedIndex(0);
+//            } else {
+//                cbbSexo.setSelectedIndex(1);
+//            }
+//            spPeso.setValue(astroseleccion.getPeso());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No Hay Astronauta Seleccionado!", "Error", 0);
+        }
+    }//GEN-LAST:event_jmiModificarActionPerformed
+
+    private void jmiModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiModificar1ActionPerformed
+        try {
+            int selecion = tablePlanetas.getSelectedRow();
+            planetaseleccion = Planetas.get(selecion);
+            jbGuardarPlaneta.setVisible(false);
+            jbModificarPlaneta.setVisible(true);
+            jdPlaneta.setModal(true);
+            jdPlaneta.pack();
+            jdPlaneta.setLocationRelativeTo(this);
+            jdPlaneta.setVisible(true);
+//            tfNombrePlaneta.setText(planetaseleccion.getNombrePlaneta());
+//            spTemp.setValue(planetaseleccion.getTemperaturaMedia());
+//            if (planetaseleccion.getAnillos().equals("No")) {
+//                cbbAnillos.setSelectedIndex(1);
+//            } else {
+//                cbbAnillos.setSelectedIndex(0);
+//            }
+//            tfTipoSuperficie.setText(planetaseleccion.getTipoDeSuperficie());
+//            spDistancia.setValue(planetaseleccion.getDistanciaATierra());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No Hay Planeta Seleccionado!", "Error", 0);
+        }
+    }//GEN-LAST:event_jmiModificar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -633,6 +732,6 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Planetas> Planetas = new ArrayList();
     ArrayList<Astronautas> Astronautas = new ArrayList();
-    int PosicionAstronuta;
-    int PosicionPlaneta;
+    Planetas planetaseleccion;
+    Astronautas astroseleccion;
 }

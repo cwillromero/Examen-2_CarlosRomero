@@ -318,6 +318,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Astronauta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiModificarActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jmiEliminar">
           <Properties>
@@ -339,6 +342,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Planeta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiModificar1ActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jmiEliminar1">
           <Properties>
