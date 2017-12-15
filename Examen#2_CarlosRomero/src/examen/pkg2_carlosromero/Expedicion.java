@@ -75,7 +75,6 @@ public class Expedicion extends Thread{
         this.TiempoRegreso = TiempoRegreso;
     }
     
-    
     @Override
     public void run() {
         while(Hilo==true){
