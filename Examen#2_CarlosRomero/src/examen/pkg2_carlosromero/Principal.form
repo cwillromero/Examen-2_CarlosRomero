@@ -220,7 +220,7 @@
         <Component class="javax.swing.JSpinner" name="spPeso">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="100.0" type="number"/>
+              <SpinnerModel initial="1.0" numberType="java.lang.Double" stepSize="100.0" type="number"/>
             </Property>
           </Properties>
           <Constraints>
@@ -583,7 +583,7 @@
             <Component class="javax.swing.JSpinner" name="spVelocidadNave">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                  <SpinnerModel initial="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -632,7 +632,7 @@
             <Component class="javax.swing.JSpinner" name="spPesoNave">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="100.0" type="number"/>
+                  <SpinnerModel initial="1.0" numberType="java.lang.Double" stepSize="100.0" type="number"/>
                 </Property>
               </Properties>
               <Constraints>

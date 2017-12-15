@@ -25,15 +25,15 @@ public class Principal extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.black);
         this.setLocationRelativeTo(null);
         this.pack();
-        tfMaterialNave.setVisible(false);
-            spPesoNave.setVisible(false);
-            jLabel17.setVisible(false);
-            jLabel16.setVisible(false);
-            tfLugarDespeje1.setVisible(false);
-            cbbAstronautas.setVisible(false);
-            AgregarA.setVisible(false);
-            jLabel19.setVisible(false);
-            jLabel18.setVisible(false);
+        tfMaterialNave.setVisible(true);
+        spPesoNave.setVisible(true);
+        jLabel17.setVisible(true);
+        jLabel16.setVisible(true);
+        tfLugarDespeje1.setVisible(false);
+        cbbAstronautas.setVisible(false);
+        AgregarA.setVisible(false);
+        jLabel19.setVisible(false);
+        jLabel18.setVisible(false);
     }
 
     /**
@@ -183,7 +183,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Peso:");
         jdAstronautas.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 20));
 
-        spPeso.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 100.0d));
+        spPeso.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 100.0d));
         jdAstronautas.getContentPane().add(spPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 240, -1));
         jdAstronautas.getContentPane().add(tfExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 370, -1));
 
@@ -303,7 +303,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(tfMaterialNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, -1));
         jPanel3.add(tfLugarDespeje1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 160, -1));
 
-        spVelocidadNave.setModel(new javax.swing.SpinnerNumberModel());
+        spVelocidadNave.setModel(new javax.swing.SpinnerNumberModel(1, null, null, 1));
         jPanel3.add(spVelocidadNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 240, -1));
         jPanel3.add(tfNumeroDeSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 370, -1));
 
@@ -311,7 +311,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel3.add(cbbPlanetaDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 180, -1));
 
-        spPesoNave.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 100.0d));
+        spPesoNave.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 100.0d));
         jPanel3.add(spPesoNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 160, -1));
 
         jbPlaneta1.setText("Crear Nave");
@@ -649,7 +649,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiModificar1ActionPerformed
 
     private void cbbTipoNaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTipoNaveItemStateChanged
-        if(cbbTipoNave.getSelectedIndex()==0){
+        if (cbbTipoNave.getSelectedIndex() == 0) {
             tfMaterialNave.setVisible(true);
             spPesoNave.setVisible(true);
             jLabel17.setVisible(true);
@@ -659,7 +659,7 @@ public class Principal extends javax.swing.JFrame {
             AgregarA.setVisible(false);
             jLabel19.setVisible(false);
             jLabel18.setVisible(false);
-        }else{
+        } else {
             tfMaterialNave.setVisible(false);
             spPesoNave.setVisible(false);
             jLabel17.setVisible(false);
@@ -679,7 +679,7 @@ public class Principal extends javax.swing.JFrame {
         String Experiecia = tfExperiencia.getText();
         String Sexo = cbbSexo.getSelectedItem().toString();
         double Peso = Double.parseDouble(spPeso.getValue().toString());
-        int x=Astronautas.indexOf(astroseleccion);
+        int x = Astronautas.indexOf(astroseleccion);
         astroseleccion.setExperiecia(Experiecia);
         astroseleccion.setNacinalidad(Nacinalidad);
         astroseleccion.setNombreAstronuta(NombreAstronuta);
@@ -704,32 +704,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbModificarAstroMouseClicked
 
     private void jbPlaneta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPlaneta1MouseClicked
-       if(cbbTipoNave.getSelectedIndex()==0){
-           String NumeroDeSerie=tfNumeroDeSerie.getText(); 
-           Planetas PlanetaDestino=Planetas.get(cbbPlanetaDestino.getSelectedIndex()); 
-           int Velocidad=Integer.parseInt(spVelocidadNave.getValue().toString());
-           String Material=tfMaterialNave.getText();
-           double PesoNaveSonda=Double.parseDouble(spPesoNave.getValue().toString());
-           Sonda sonda=new Sonda(Material, PesoNaveSonda, NumeroDeSerie, PlanetaDestino, Velocidad);
-           naves.add(sonda);
-           DefaultComboBoxModel p=(DefaultComboBoxModel) cbbExpedicionNave.getModel();
-           p.addElement(sonda);
-           cbbExpedicionNave.setModel(p);
-       }else{
-           String NumeroDeSerie=tfNumeroDeSerie.getText(); 
-           nt.setNumeroDeSerie(NumeroDeSerie);
-           Planetas PlanetaDestino=Planetas.get(cbbPlanetaDestino.getSelectedIndex());
-           nt.setPlanetaDestino(PlanetaDestino);
-           int Velocidad=Integer.parseInt(spVelocidadNave.getValue().toString());
-           nt.setVelocidad(Velocidad);
-           String LugarDespeja=tfLugarDespeje1.getText();
-           nt.setLugarDespeja(LugarDespeja);
-           naves.add(nt);
-           DefaultComboBoxModel p=(DefaultComboBoxModel) cbbExpedicionNave.getModel();
-           p.addElement(nt);
-           cbbExpedicionNave.setModel(p);
-       }
-       JOptionPane.showMessageDialog(this, "Nave Creada");
+        if (cbbTipoNave.getSelectedIndex() == 0) {
+            String NumeroDeSerie = tfNumeroDeSerie.getText();
+            Planetas PlanetaDestino = Planetas.get(cbbPlanetaDestino.getSelectedIndex());
+            int Velocidad = Integer.parseInt(spVelocidadNave.getValue().toString());
+            String Material = tfMaterialNave.getText();
+            double PesoNaveSonda = Double.parseDouble(spPesoNave.getValue().toString());
+            Sonda sonda = new Sonda(Material, PesoNaveSonda, NumeroDeSerie, PlanetaDestino, Velocidad);
+            naves.add(sonda);
+            DefaultComboBoxModel p = (DefaultComboBoxModel) cbbExpedicionNave.getModel();
+            p.addElement(sonda);
+            cbbExpedicionNave.setModel(p);
+        } else {
+            String NumeroDeSerie = tfNumeroDeSerie.getText();
+            nt.setNumeroDeSerie(NumeroDeSerie);
+            Planetas PlanetaDestino = Planetas.get(cbbPlanetaDestino.getSelectedIndex());
+            nt.setPlanetaDestino(PlanetaDestino);
+            int Velocidad = Integer.parseInt(spVelocidadNave.getValue().toString());
+            nt.setVelocidad(Velocidad);
+            String LugarDespeja = tfLugarDespeje1.getText();
+            nt.setLugarDespeja(LugarDespeja);
+            naves.add(nt);
+            DefaultComboBoxModel p = (DefaultComboBoxModel) cbbExpedicionNave.getModel();
+            p.addElement(nt);
+            cbbExpedicionNave.setModel(p);
+        }
+        JOptionPane.showMessageDialog(this, "Nave Creada");
     }//GEN-LAST:event_jbPlaneta1MouseClicked
 
     private void AgregarAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarAMouseClicked
@@ -738,9 +738,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarAMouseClicked
 
     private void jbPlaneta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPlaneta2MouseClicked
-        Naves nv=naves.get(cbbExpedicionNave.getSelectedIndex());
+        Naves nv = naves.get(cbbExpedicionNave.getSelectedIndex());
         System.out.println(nv);
-        Planetas pl=Planetas.get(cbbExpedicionPlanetaDestino1.getSelectedIndex());
+        Planetas pl = Planetas.get(cbbExpedicionPlanetaDestino1.getSelectedIndex());
+        Expedicion ex = new Expedicion(nv, pl);
+        if (ex.isVve() == false) {
+            ex.setVve(true);
+        } else {
+            ex.start();
+        }
     }//GEN-LAST:event_jbPlaneta2MouseClicked
 
     /**
@@ -777,38 +783,34 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void Actualizar(){
+
+    public void Actualizar() {
         tableAstronautas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-                "Nombre", "Nacioalidad", "Sueldo", "Experiencia","Sexo","Peso"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Nacioalidad", "Sueldo", "Experiencia", "Sexo", "Peso"
+                }
         ) {
         });
-               DefaultTableModel Modelo = (DefaultTableModel) tableAstronautas.getModel();         
+        DefaultTableModel Modelo = (DefaultTableModel) tableAstronautas.getModel();
 
-        for (Astronautas Astro :  Astronautas) {
-            Object[] newrow = {Astro.getNombreAstronuta(), Astro.getNacinalidad(),Astro.getSueldo(), Astro.getExperiecia(), Astro.getSexo(),Astro.getPeso()
+        for (Astronautas Astro : Astronautas) {
+            Object[] newrow = {Astro.getNombreAstronuta(), Astro.getNacinalidad(), Astro.getSueldo(), Astro.getExperiecia(), Astro.getSexo(), Astro.getPeso()
             };
             Modelo.addRow(newrow);
         }
         tableAstronautas.setModel(Modelo);
-        
-        
-        
+
         tablePlanetas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-                "Nombre", "Temperatura", "Anillos", "Tipo de Superficie","Distancia a Tierra"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Temperatura", "Anillos", "Tipo de Superficie", "Distancia a Tierra"
+                }
         ) {
         });
         DefaultTableModel Modelo1 = (DefaultTableModel) tablePlanetas.getModel();
         for (Planetas t : Planetas) {
-            Object [] newrow={t.getNombrePlaneta(),t.getTemperaturaMedia(),t.getAnillos(),t.getTipoDeSuperficie(),t.getDistanciaATierra()};
+            Object[] newrow = {t.getNombrePlaneta(), t.getTemperaturaMedia(), t.getAnillos(), t.getTipoDeSuperficie(), t.getDistanciaATierra()};
             Modelo1.addRow(newrow);
         }
         tablePlanetas.setModel(Modelo1);
@@ -892,6 +894,6 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Astronautas> Astronautas = new ArrayList();
     Planetas planetaseleccion;
     Astronautas astroseleccion;
-    ArrayList<Naves> naves=new ArrayList();
-    NaveTripulada nt=new NaveTripulada();
+    ArrayList<Naves> naves = new ArrayList();
+    NaveTripulada nt = new NaveTripulada();
 }

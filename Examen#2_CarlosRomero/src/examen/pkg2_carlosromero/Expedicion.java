@@ -82,8 +82,8 @@ public class Expedicion extends Thread{
     @Override
     public void run() {
         while(Hilo==true){
-            JOptionPane.showMessageDialog(null, "Viaje de Nave: "+Nave.getNumeroDeSerie().toString()+" Iniciado");
-            if(vve==true){
+            while(vve==true){
+                JOptionPane.showMessageDialog(null, "Viaje de Nave: "+Nave.getNumeroDeSerie().toString()+" Iniciado");
                 if(Nave instanceof Sonda){
                     TiempoIda=((Sonda)Nave).CalcularTiempo()[0];
                     try {
@@ -98,6 +98,7 @@ public class Expedicion extends Thread{
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    vve=false;
                 }else{
                     TiempoIda=((NaveTripulada)Nave).CalcularTiempo()[0];
                     try {
@@ -113,7 +114,9 @@ public class Expedicion extends Thread{
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     JOptionPane.showMessageDialog(null, "La Nave Regresó a Tierra");
+                    vve=false;
                 }
+                vve=false;
             }
         }
     }
