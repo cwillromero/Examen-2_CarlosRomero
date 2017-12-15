@@ -310,6 +310,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(spPesoNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 160, -1));
 
         jbPlaneta1.setText("Crear Nave");
+        jbPlaneta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbPlaneta1MouseClicked(evt);
+            }
+        });
         jPanel3.add(jbPlaneta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 180, -1));
 
         AgregarA.setText("Agregar A.");
@@ -644,15 +649,23 @@ public class Principal extends javax.swing.JFrame {
         if(cbbTipoNave.getSelectedIndex()==0){
             tfMaterialNave.setVisible(true);
             spPesoNave.setVisible(true);
+            jLabel17.setVisible(true);
+            jLabel16.setVisible(true);
             tfLugarDespeje1.setVisible(false);
             cbbAstronautas.setVisible(false);
             AgregarA.setVisible(false);
+            jLabel19.setVisible(false);
+            jLabel18.setVisible(false);
         }else{
             tfMaterialNave.setVisible(false);
             spPesoNave.setVisible(false);
+            jLabel17.setVisible(false);
+            jLabel16.setVisible(false);
             tfLugarDespeje1.setVisible(true);
             cbbAstronautas.setVisible(true);
             AgregarA.setVisible(true);
+            jLabel19.setVisible(true);
+            jLabel18.setVisible(true);
         }
     }//GEN-LAST:event_cbbTipoNaveItemStateChanged
 
@@ -686,6 +699,16 @@ public class Principal extends javax.swing.JFrame {
         cbbSexo.setSelectedIndex(0);
         spPeso.setValue(0);
     }//GEN-LAST:event_jbModificarAstroMouseClicked
+
+    private void jbPlaneta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPlaneta1MouseClicked
+       if(cbbTipoNave.getSelectedIndex()==0){
+           String NumeroDeSerie=tfNumeroDeSerie.getText(); 
+           Planetas PlanetaDestino=Planetas.get(cbbPlanetaDestino.getSelectedIndex()); 
+           int Velocidad;
+       }else{
+           
+       }
+    }//GEN-LAST:event_jbPlaneta1MouseClicked
 
     /**
      * @param args the command line arguments
