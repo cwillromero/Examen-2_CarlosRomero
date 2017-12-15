@@ -318,6 +318,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(jbPlaneta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 180, -1));
 
         AgregarA.setText("Agregar A.");
+        AgregarA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AgregarAMouseClicked(evt);
+            }
+        });
         jPanel3.add(AgregarA, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
 
         jTabbedPane1.addTab(" Crear Nave", jPanel3);
@@ -704,11 +709,28 @@ public class Principal extends javax.swing.JFrame {
        if(cbbTipoNave.getSelectedIndex()==0){
            String NumeroDeSerie=tfNumeroDeSerie.getText(); 
            Planetas PlanetaDestino=Planetas.get(cbbPlanetaDestino.getSelectedIndex()); 
-           int Velocidad;
+           int Velocidad=Integer.parseInt(spVelocidadNave.getValue().toString());
+           String Material=tfMaterialNave.getText();
+           double PesoNaveSonda=Double.parseDouble(spPesoNave.getValue().toString());
+           Sonda sonda=new Sonda(Material, PesoNaveSonda, NumeroDeSerie, PlanetaDestino, Velocidad);
+           naves.add(sonda);
        }else{
-           
+           String NumeroDeSerie=tfNumeroDeSerie.getText(); 
+           nt.setNumeroDeSerie(NumeroDeSerie);
+           Planetas PlanetaDestino=Planetas.get(cbbPlanetaDestino.getSelectedIndex());
+           nt.setPlanetaDestino(PlanetaDestino);
+           int Velocidad=Integer.parseInt(spVelocidadNave.getValue().toString());
+           nt.setVelocidad(Velocidad);
+           String LugarDespeja=tfLugarDespeje1.getText();
+           nt.setLugarDespeja(LugarDespeja);
+           naves.add(nt);
        }
     }//GEN-LAST:event_jbPlaneta1MouseClicked
+
+    private void AgregarAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarAMouseClicked
+        nt.getAtronautas().add((Astronautas) Astronautas.get(cbbAstronautas.getSelectedIndex()));
+        JOptionPane.showMessageDialog(this, "Agregado");
+    }//GEN-LAST:event_AgregarAMouseClicked
 
     /**
      * @param args the command line arguments
@@ -864,4 +886,5 @@ public class Principal extends javax.swing.JFrame {
     Planetas planetaseleccion;
     Astronautas astroseleccion;
     ArrayList<Naves> naves=new ArrayList();
+    NaveTripulada nt=new NaveTripulada();
 }
