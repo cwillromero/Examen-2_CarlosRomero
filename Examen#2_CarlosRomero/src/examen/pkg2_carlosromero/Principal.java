@@ -109,11 +109,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
+        estado = new javax.swing.JLabel();
         cbbExpedicionNave = new javax.swing.JComboBox<>();
         cbbExpedicionPlanetaDestino1 = new javax.swing.JComboBox<>();
         jbPlaneta2 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        LB = new javax.swing.JLabel();
+        lbNave = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -404,8 +407,8 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel25.setText("Nave:");
-        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 110, 20));
+        estado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel4.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 190, 20));
 
         jPanel4.add(cbbExpedicionNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 180, -1));
 
@@ -421,6 +424,16 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel30.setText("Planeta de Destino:");
         jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 110, 20));
+
+        jLabel26.setText("Nave:");
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 110, 20));
+
+        LB.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        LB.setText("NAVE:");
+        jPanel4.add(LB, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 110, 20));
+
+        lbNave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel4.add(lbNave, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 210, 20));
 
         jTabbedPane1.addTab(" Crear Expedicion", jPanel4);
 
@@ -741,7 +754,7 @@ public class Principal extends javax.swing.JFrame {
         Naves nv = naves.get(cbbExpedicionNave.getSelectedIndex());
         System.out.println(nv);
         Planetas pl = Planetas.get(cbbExpedicionPlanetaDestino1.getSelectedIndex());
-        Expedicion ex = new Expedicion(nv, pl);
+        Expedicion ex = new Expedicion(nv, pl,lbNave,estado);
         if (ex.isVve() == false) {
             ex.setVve(true);
         } else {
@@ -818,6 +831,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarA;
+    private javax.swing.JLabel LB;
     private javax.swing.JComboBox<String> cbbAnillos;
     private javax.swing.JComboBox<String> cbbAstronautas;
     private javax.swing.JComboBox<String> cbbExpedicionNave;
@@ -825,6 +839,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbPlanetaDestino;
     private javax.swing.JComboBox<String> cbbSexo;
     private javax.swing.JComboBox<String> cbbTipoNave;
+    private javax.swing.JLabel estado;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -839,7 +854,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel30;
@@ -871,6 +886,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiEliminar1;
     private javax.swing.JMenuItem jmiModificar;
     private javax.swing.JMenuItem jmiModificar1;
+    private javax.swing.JLabel lbNave;
     private javax.swing.JPopupMenu ppMenuAstro;
     private javax.swing.JPopupMenu ppMenuPlanet;
     private javax.swing.JSpinner spDistancia;
