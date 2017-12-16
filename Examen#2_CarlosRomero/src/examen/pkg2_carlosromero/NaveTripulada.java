@@ -47,8 +47,8 @@ public class NaveTripulada extends Naves {
         for (int i = 0; i < atronautas.size(); i++) {
             peso+=atronautas.get(i).getPeso();
         }
-        int ida=((int)p.getDistanciaATierra())/(((peso*peso)*super.getVelocidad())/100);
-        int regreso=((int)p.getDistanciaATierra())/(((peso)*super.getVelocidad())/100);;
+        int ida=(int)((p.getDistanciaATierra())/(((peso*peso)*super.getVelocidad())/100));
+        int regreso=(int)((p.getDistanciaATierra())/(((peso)*super.getVelocidad())/100));
         int[] ar={ida,regreso};
         return ar;
     }

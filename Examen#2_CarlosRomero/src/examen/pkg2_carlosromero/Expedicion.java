@@ -14,17 +14,19 @@ import javax.swing.JOptionPane;
  *
  * @author Will
  */
-public class Expedicion extends Thread{
+public class Expedicion extends Thread {
+
     private Naves Nave;
     private Planetas PlanetaDestino;
     private int TiempoIda;
     private int TiempoRegreso;
-    private boolean Hilo=true;
-    private boolean Hida=true;
-    private boolean Hregreso=true;
-    private boolean vve=true;
+    private boolean Hilo = true;
+    private boolean Hida = true;
+    private boolean Hregreso = true;
+    private boolean vve = true;
     JLabel lbNave;
     JLabel estado;
+
     public Expedicion() {
     }
 
@@ -34,7 +36,6 @@ public class Expedicion extends Thread{
         this.lbNave = lbNave;
         this.estado = estado;
     }
-    
 
     public Naves getNave() {
         return Nave;
@@ -83,57 +84,61 @@ public class Expedicion extends Thread{
     public void setVve(boolean vve) {
         this.vve = vve;
     }
-    
+
     @Override
     public void run() {
-        while(Hilo==true){
-            while(vve==true){
-                JOptionPane.showMessageDialog(null, "Viaje de Nave: "+Nave.getNumeroDeSerie().toString()+" Iniciado");
-                if(Nave instanceof Sonda){
-                    TiempoIda=((Sonda)Nave).CalcularTiempo()[0];
+        while (Hilo == true) {
+            while (vve == true) {
+                JOptionPane.showMessageDialog(null, "Viaje de Nave: " + Nave.getNumeroDeSerie().toString() + " Iniciado");
+                if (Nave instanceof Sonda) {
+                    TiempoIda = ((Sonda) Nave).CalcularTiempo()[0];
+                    System.out.println("Ida: "+TiempoIda);
                     try {
                         lbNave.setText(Nave.getNumeroDeSerie().toString());
-                        estado.setText("Ida a "+PlanetaDestino.toString());
-                        Thread.sleep(TiempoIda*1000);
+                        estado.setText("Ida a " + PlanetaDestino.toString());
+                        Thread.sleep(TiempoIda * 1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    JOptionPane.showMessageDialog(null, "La Nave llegó a:"+PlanetaDestino.toString());
-                    TiempoRegreso=((Sonda)Nave).CalcularTiempo()[1];
+                    JOptionPane.showMessageDialog(null, "La Nave llegó a:" + PlanetaDestino.toString());
+                    TiempoRegreso = ((Sonda) Nave).CalcularTiempo()[1];
+                    System.out.println("Regreso: "+ TiempoRegreso);
                     try {
                         JOptionPane.showMessageDialog(null, "La Nave regresa a Tierra");
                         estado.setText("De Regreso a Tierra");
-                        Thread.sleep(TiempoRegreso*1000);
+                        Thread.sleep(TiempoRegreso * 1000);
                         estado.setText("De Regreso a Tierra");
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     JOptionPane.showMessageDialog(null, "La Nave llegó a Tierra");
                     estado.setText("Ya en la Tierra");
-                    vve=false;
-                }else{
-                    TiempoIda=((NaveTripulada)Nave).CalcularTiempo()[0];
+                    vve = false;
+                } else {
+                    TiempoIda = ((NaveTripulada) Nave).CalcularTiempo()[0];
+                    System.out.println("Ida: "+TiempoIda);
                     try {
                         lbNave.setText(Nave.getNumeroDeSerie().toString());
-                        estado.setText("Ida a "+PlanetaDestino.toString());
-                        Thread.sleep(TiempoIda*1000);
+                        estado.setText("Ida a " + PlanetaDestino.toString());
+                        Thread.sleep(TiempoIda * 1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    JOptionPane.showMessageDialog(null, "La Nave llegó a:"+PlanetaDestino.toString());
-                    TiempoRegreso=((NaveTripulada)Nave).CalcularTiempo()[1];
+                    JOptionPane.showMessageDialog(null, "La Nave llegó a:" + PlanetaDestino.toString());
+                    TiempoRegreso = ((NaveTripulada) Nave).CalcularTiempo()[1];
+                    System.out.println("Regreaso "+ TiempoRegreso);
                     try {
                         JOptionPane.showMessageDialog(null, "La Nave llegó a Tierra");
                         estado.setText("De Regreso a Tierra");
-                        Thread.sleep(TiempoRegreso*1000);
+                        Thread.sleep(TiempoRegreso * 1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Expedicion.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     JOptionPane.showMessageDialog(null, "La Nave Regresó a Tierra");
-                    vve=false;
+                    vve = false;
                     estado.setText("Ya en la Tierra");
                 }
-                vve=false;
+                vve = false;
             }
         }
     }

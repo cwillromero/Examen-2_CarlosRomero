@@ -43,7 +43,7 @@ public class Sonda extends Naves {
     @Override
     public int[] CalcularTiempo() {
         Planetas p=super.getPlanetaDestino();
-        int ida=((int)p.getDistanciaATierra())/super.getVelocidad();
+        int ida=(int)((p.getDistanciaATierra())/super.getVelocidad());
         int regreso=(int)9.8*ida;
         int[] ar={ida,regreso};
         return ar;

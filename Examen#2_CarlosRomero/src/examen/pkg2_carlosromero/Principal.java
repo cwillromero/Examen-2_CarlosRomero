@@ -119,7 +119,6 @@ public class Principal extends javax.swing.JFrame {
         lbNave = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         jdPlaneta.setMaximumSize(new java.awt.Dimension(600, 400));
         jdPlaneta.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -186,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Peso:");
         jdAstronautas.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, 20));
 
-        spPeso.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 100.0d));
+        spPeso.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 1.0d));
         jdAstronautas.getContentPane().add(spPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 240, -1));
         jdAstronautas.getContentPane().add(tfExperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 370, -1));
 
@@ -439,9 +438,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -863,7 +859,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
