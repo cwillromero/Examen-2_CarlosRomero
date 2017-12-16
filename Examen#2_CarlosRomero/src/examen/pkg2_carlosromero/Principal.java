@@ -6,9 +6,17 @@
 package examen.pkg2_carlosromero;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -119,6 +127,8 @@ public class Principal extends javax.swing.JFrame {
         lbNave = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jmiGuardar = new javax.swing.JMenuItem();
+        jmiAbrir = new javax.swing.JMenuItem();
 
         jdPlaneta.setMaximumSize(new java.awt.Dimension(600, 400));
         jdPlaneta.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -436,7 +446,19 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab(" Crear Expedicion", jPanel4);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
+
+        jmiGuardar.setText("Guardar");
+        jmiGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiGuardar);
+
+        jmiAbrir.setText("Abrir");
+        jMenu1.add(jmiAbrir);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -750,13 +772,42 @@ public class Principal extends javax.swing.JFrame {
         Naves nv = naves.get(cbbExpedicionNave.getSelectedIndex());
         System.out.println(nv);
         Planetas pl = Planetas.get(cbbExpedicionPlanetaDestino1.getSelectedIndex());
-        Expedicion ex = new Expedicion(nv, pl,lbNave,estado);
+        Expedicion ex = new Expedicion(nv, pl, lbNave, estado);
         if (ex.isVve() == false) {
             ex.setVve(true);
         } else {
             ex.start();
         }
     }//GEN-LAST:event_jbPlaneta2MouseClicked
+
+    private void jmiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGuardarActionPerformed
+        todo.add(Astronautas);
+        todo.add(Planetas);
+        todo.add(naves);
+        File archivo = new File("./ArchivoExamen.Will");
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            for (Object t : todo) {
+                bw.writeObject(t);
+            }
+            bw.flush();
+        } catch (Exception e) {
+
+        }
+        try {
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jmiGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -877,8 +928,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jbPlaneta2;
     private javax.swing.JDialog jdAstronautas;
     private javax.swing.JDialog jdPlaneta;
+    private javax.swing.JMenuItem jmiAbrir;
     private javax.swing.JMenuItem jmiEliminar;
     private javax.swing.JMenuItem jmiEliminar1;
+    private javax.swing.JMenuItem jmiGuardar;
     private javax.swing.JMenuItem jmiModificar;
     private javax.swing.JMenuItem jmiModificar1;
     private javax.swing.JLabel lbNave;
@@ -907,4 +960,5 @@ public class Principal extends javax.swing.JFrame {
     Astronautas astroseleccion;
     ArrayList<Naves> naves = new ArrayList();
     NaveTripulada nt = new NaveTripulada();
+    ArrayList todo = new ArrayList();
 }
