@@ -5,11 +5,13 @@
  */
 package examen.pkg2_carlosromero;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Will
  */
-public class Astronautas {
+public class Astronautas implements Serializable{
 
     private String NombreAstronuta;
     private String Nacinalidad;
@@ -17,6 +19,7 @@ public class Astronautas {
     private String Experiecia;
     private String Sexo;
     private double Peso;
+    private static final long SerialVersionUID=2010L;
 
     public Astronautas() {
     }

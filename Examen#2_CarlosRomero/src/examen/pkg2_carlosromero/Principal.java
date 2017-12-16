@@ -7,8 +7,10 @@ package examen.pkg2_carlosromero;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -16,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTree;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -457,6 +460,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jmiGuardar);
 
         jmiAbrir.setText("Abrir");
+        jmiAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAbrirActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiAbrir);
 
         jMenuBar1.add(jMenu1);
@@ -807,7 +815,58 @@ public class Principal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(this, "Archivo Guardado la Carpeta del Programa");
     }//GEN-LAST:event_jmiGuardarActionPerformed
+
+    private void jmiAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAbrirActionPerformed
+        try {
+            File archivo = new File("./ArchivoExamen.Will");
+            todo = new ArrayList();
+            Object algo;
+            JTree arbol;
+            if (archivo.exists()) {
+                FileInputStream entrada = new FileInputStream(archivo);
+                ObjectInputStream objeto = new ObjectInputStream(entrada);
+                try {
+                    while ((algo = objeto.readObject()) != null) {
+                        todo.add(algo);
+                    }
+                } catch (Exception e) {
+                }
+                objeto.close();
+                entrada.close();
+            }
+            JOptionPane.showMessageDialog(this, "Archivo Cargado");
+        } catch (Exception e) {
+        }
+        DefaultComboBoxModel modeloc=(DefaultComboBoxModel) cbbAstronautas.getModel();
+        DefaultComboBoxModel modelop=(DefaultComboBoxModel) cbbPlanetaDestino.getModel();
+        DefaultComboBoxModel modelon=(DefaultComboBoxModel) cbbExpedicionNave.getModel();
+        DefaultTableModel modelota=(DefaultTableModel) tableAstronautas.getModel();
+        DefaultTableModel modelotp=(DefaultTableModel) tablePlanetas.getModel();
+        for (Object t : todo) {
+         if(t instanceof Astronautas){
+             Astronautas.add((Astronautas)t);
+             modeloc.addElement(t);
+             Object[] newRow = {((Astronautas) t).getNombreAstronuta(), ((Astronautas) t).getNacinalidad(),((Astronautas) t).getSueldo() , ((Astronautas) t).getExperiecia() ,((Astronautas) t).getSexo(), ((Astronautas) t).getPeso()};
+             modelota.addRow(newRow);
+         } 
+         if(t instanceof Planetas){
+             Planetas.add((Planetas)t);
+             modelop.addElement(t);
+         }
+         if(t instanceof Naves){
+             naves.add((Naves)t);
+             modelon.addElement(t);
+         }
+        }
+        cbbAstronautas.setModel(modeloc);
+        cbbExpedicionPlanetaDestino1.setModel(modelop);
+        cbbPlanetaDestino.setModel(modelop);
+        cbbExpedicionNave.setModel(modelon);
+        tableAstronautas.setModel(modelota);
+        tablePlanetas.setModel(modelotp);
+    }//GEN-LAST:event_jmiAbrirActionPerformed
 
     /**
      * @param args the command line arguments

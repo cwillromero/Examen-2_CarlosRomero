@@ -5,17 +5,20 @@
  */
 package examen.pkg2_carlosromero;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Will
  */
-public class Planetas {
+public class Planetas implements Serializable{
 
     private String NombrePlaneta;
     private int TemperaturaMedia;
     private String Anillos;
     private String TipoDeSuperficie;
     private double DistanciaATierra;
+    private static final long SerialVersionUID=2010L;
 
     public Planetas() {
     }

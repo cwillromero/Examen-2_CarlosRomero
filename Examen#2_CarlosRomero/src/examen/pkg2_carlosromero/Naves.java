@@ -5,15 +5,18 @@
  */
 package examen.pkg2_carlosromero;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Will
  */
-public abstract class Naves {
+public abstract class Naves implements Serializable {
 
     private String NumeroDeSerie;
     private Planetas PlanetaDestino;
     private int Velocidad;
+    private static final long SerialVersionUID=2010L;
 
     public Naves() {
     }
